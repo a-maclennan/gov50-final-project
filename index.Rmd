@@ -12,3 +12,68 @@ output:
 ## Project thoughts
 
 I am interested in exploring data related to the 2022 midterm elections and Asian American voters, or other data related to Asian Americans and American politics. I could potentially study Asian American voting behavior over time related to some other factor such as specific ethnicity, what generation immigrant they are, etc. Or I could look at what issues they rate as being most important to them, or whether thay're more likely to vote for Asian candidates regardless of party affiliation.
+
+```{r}
+knitr::opts_chunk$set(echo = FALSE)
+
+
+
+```
+```{r}
+
+library(tidyverse)
+library(ggplot2)
+#Options
+options(
+  scipen = 9,
+  width = 100)
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center")
+
+
+aapi <- read.csv("aapi-final-project-data.csv")
+```
+
+
+```{r}
+#creating variable for whether someone has experienced discrimination
+#is a 1 if respondent indicated they had experience emotional bullying,
+#disrespect/being ignored, and/or physical attack
+aapi <- aapi |>
+  drop_na(emo_bully, disrespect_ignored, phys_attack, racism_issue) |>
+  mutate(
+    discrim = if_else(emo_bully == 0 & disrespect_ignored == 0 & phys_attack == 0, 0, 1)
+  )
+
+filtered_aapi <- aapi |>
+  filter(orig_region == "s" | orig_region == "se" | orig_region == "e") |>
+  mutate(
+    orig_north_south = case_when(
+      orig_region == "s" ~ 0,
+      orig_region == "e" ~ 1,
+      orig_region == "se" ~ 0,
+    ))
+
+#Does experiencing discrimination make you care more about racism?
+aapi |>
+  mutate(discrim = if_else(discrim == 0, "No Discrim", "Yes Discrim")) |>
+  group_by(discrim) |>
+  summarize(avg_careaboutracism = mean(racism_issue), n = n()) |>
+  pivot_wider(names_from = discrim, values_from = avg_careaboutracism)
+
+#Does your region of origin affect whether you care about racism?
+filtered_aapi |>
+  #filter(orig_country == "China" | orig_country == "India") |>
+  group_by(orig_region) |>
+  summarize(avg_careaboutracism = mean(racism_issue), n = n()) 
+```
+
+```{r}
+racism_affected <- lm(racism_issue ~ discrim + orig_region, data = filtered_aapi)
+
+racism_affected
+```
+
