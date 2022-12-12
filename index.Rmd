@@ -7,8 +7,6 @@ output:
     self_contained: false
 ---
 
-
-
 ## Project thoughts
 
 I am interested in exploring data related to the 2022 midterm elections and Asian American voters, or other data related to Asian Americans and American politics. I could potentially study Asian American voting behavior over time related to some other factor such as specific ethnicity, what generation immigrant they are, etc. Or I could look at what issues they rate as being most important to them, or whether thay're more likely to vote for Asian candidates regardless of party affiliation.
@@ -60,7 +58,7 @@ avg_racism_care_discrim <- aapi |>
   mutate(discrim = if_else(discrim == 0, "No Discrim", "Yes Discrim")) |>
   group_by(discrim) |>
   summarize(avg_careaboutracism = mean(racism_issue), n = n()) |>
-  pivot_wider(names_from = discrim, values_from = avg_careaboutracism)
+  pivot_wider(names_from = discrim, values_from = avg_careaboutracism) 
 
 #Does your region of origin affect whether you care about racism?
 origin_racism <- filtered_aapi |>
@@ -71,7 +69,6 @@ origin_racism <- filtered_aapi |>
 
 ```{r}
 filtered_aapi |>
-  group_by(orig_region) |>
   mutate(
     racism_label = if_else(racism_issue == 1, "Yes", "No")
   ) |>
@@ -89,5 +86,25 @@ filtered_aapi |>
 racism_affected <- lm(racism_issue ~ discrim + orig_region, data = filtered_aapi)
 
 racism_affected
+
+#scatterplot of whether experiencing racism makes you more likely to care about racism politically
+filtered_aapi |>
+  ggplot(mapping = aes(x = racism_issue, y = discrim)) +
+  geom_point(alpha = 0.0075, size = 5) +
+  geom_smooth(color = "indianred1", se = FALSE, method = "lm") 
+
+filtered_aapi |>
+  mutate(
+    racism_label = if_else(racism_issue == 1, "Racism Among Top Three Issues", "Racism NOT Among Top Three Issues"),
+    Discrimination = if_else(discrim == 1, "Have Experienced", "Not Experienced")
+  ) |>
+  ggplot(mapping = aes(x = racism_label, fill = Discrimination)) + 
+  geom_bar(position = "dodge") +
+  labs(x = "Political Importance of Racism",
+       y = "Count", title = "Relative Salience of Racism", 
+       subtitle = "Does experiencing racism affect how politically important Asian Americans consider it?")
+  
+
+  
 ```
 
