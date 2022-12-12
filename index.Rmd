@@ -13,10 +13,8 @@ output:
 
 I am interested in exploring data related to the 2022 midterm elections and Asian American voters, or other data related to Asian Americans and American politics. I could potentially study Asian American voting behavior over time related to some other factor such as specific ethnicity, what generation immigrant they are, etc. Or I could look at what issues they rate as being most important to them, or whether thay're more likely to vote for Asian candidates regardless of party affiliation.
 
-```{r}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-
-
 
 ```
 ```{r}
@@ -58,20 +56,36 @@ filtered_aapi <- aapi |>
     ))
 
 #Does experiencing discrimination make you care more about racism?
-aapi |>
+avg_racism_care_discrim <- aapi |>
   mutate(discrim = if_else(discrim == 0, "No Discrim", "Yes Discrim")) |>
   group_by(discrim) |>
   summarize(avg_careaboutracism = mean(racism_issue), n = n()) |>
   pivot_wider(names_from = discrim, values_from = avg_careaboutracism)
 
 #Does your region of origin affect whether you care about racism?
-filtered_aapi |>
+origin_racism <- filtered_aapi |>
   #filter(orig_country == "China" | orig_country == "India") |>
   group_by(orig_region) |>
   summarize(avg_careaboutracism = mean(racism_issue), n = n()) 
 ```
 
 ```{r}
+filtered_aapi |>
+  group_by(orig_region) |>
+  mutate(
+    racism_label = if_else(racism_issue == 1, "Yes", "No")
+  ) |>
+  ggplot(mapping = aes(x = racism_label, fill = orig_region)) + 
+  geom_bar(position = "dodge") +
+  labs(x = "Is Racism one of Your Top Three Most Important Political Issues?",
+       y = "Count", title = "Relative Salience of Racism", "") +
+  scale_fill_manual(values = c(e = "dodgerblue3", s = "firebrick3", se = "darkolivegreen3"))
+```
+
+
+
+```{r}
+#Multiple Regression
 racism_affected <- lm(racism_issue ~ discrim + orig_region, data = filtered_aapi)
 
 racism_affected
