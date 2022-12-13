@@ -68,15 +68,17 @@ origin_racism <- filtered_aapi |>
 ```
 
 ```{r}
+
+#Distribution of racism_issue variable
 filtered_aapi |>
   mutate(
     racism_label = if_else(racism_issue == 1, "Yes", "No")
   ) |>
-  ggplot(mapping = aes(x = racism_label, fill = orig_region)) + 
-  geom_bar(position = "dodge") +
+  ggplot(mapping = aes(x = racism_label)) + 
+  geom_bar() +
   labs(x = "Is Racism one of Your Top Three Most Important Political Issues?",
-       y = "Count", title = "Relative Salience of Racism", "") +
-  scale_fill_manual(values = c(e = "dodgerblue3", s = "firebrick3", se = "darkolivegreen3"))
+       y = "Count", title = "Relative Salience of Racism") 
+
 ```
 
 
@@ -93,6 +95,7 @@ filtered_aapi |>
   geom_point(alpha = 0.0075, size = 5) +
   geom_smooth(color = "indianred1", se = FALSE, method = "lm") 
 
+#Relative salience of racism based experience with racism
 filtered_aapi |>
   mutate(
     racism_label = if_else(racism_issue == 1, "Racism Among Top Three Issues", "Racism NOT Among Top Three Issues"),
@@ -101,9 +104,28 @@ filtered_aapi |>
   ggplot(mapping = aes(x = racism_label, fill = Discrimination)) + 
   geom_bar(position = "dodge") +
   labs(x = "Political Importance of Racism",
-       y = "Count", title = "Relative Salience of Racism", 
+       y = "Count", title = "Relative Salience of Racism By Personal Experience with Discrimination", 
        subtitle = "Does experiencing racism affect how politically important Asian Americans consider it?")
-  
+
+  ##Relative salience of racism based on origin region
+filtered_aapi |>
+  mutate(
+    racism_label = if_else(racism_issue == 1, "Racism Among Top Three Issues", "Racism NOT Among Top Three Issues"),
+    `Origin Region` = case_when(
+        orig_region == "s" ~ "South Asia",
+        orig_region == "e" ~ "East Asia",
+        orig_region == "se" ~ "Southeast Asia",
+    )
+  ) |>
+  ggplot(mapping = aes(x = racism_label, fill = `Origin Region`)) + 
+  geom_bar(position = "dodge") +
+  labs(x = "Is Racism one of Your Top Three Most Important Political Issues?",
+       y = "Respondents", 
+       title = "Relative Salience of Racism By Origin Region") +
+  scale_fill_manual(values = c(`East Asia` = "dodgerblue3", 
+                               `South Asia` = "firebrick3", 
+                               `Southeast Asia` = "darkolivegreen3"))
+
 
   
 ```
