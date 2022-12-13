@@ -7,7 +7,7 @@ output:
     self_contained: false
 ---
 
-## Project thoughts
+## Initial Project thoughts [to be replaced with introduction and research question]
 
 I am interested in exploring data related to the 2022 midterm elections and Asian American voters, or other data related to Asian Americans and American politics. I could potentially study Asian American voting behavior over time related to some other factor such as specific ethnicity, what generation immigrant they are, etc. Or I could look at what issues they rate as being most important to them, or whether thay're more likely to vote for Asian candidates regardless of party affiliation.
 
@@ -32,6 +32,8 @@ knitr::opts_chunk$set(
 
 aapi <- read.csv("aapi-final-project-data.csv")
 ```
+
+
 
 
 ```{r}
@@ -61,7 +63,9 @@ origin_racism <- filtered_aapi |>
 ```
 
 
+## Distribution of Dependent Variable
 
+[more description to come]
 
 ```{r}
 
@@ -78,18 +82,34 @@ filtered_aapi |>
 ```
 
 
+## Multiple Regression Table and Plot
+
+[interpretation]
 
 ```{r}
 #Multiple Regression
 racism_affected <- lm(racism_issue ~ discrim + orig_region, data = filtered_aapi)
 
-racism_affected
+modelsummary::modelsummary(racism_affected,
+statistic = c("s.e. = {std.error}",
+"p = {p.value}"),
+gof_map = c("nobs", "r.squared", "adj.r.squared"))
 
 #scatterplot of whether experiencing racism makes you more likely to care about racism politically
 filtered_aapi |>
   ggplot(mapping = aes(x = racism_issue, y = discrim)) +
   geom_point(alpha = 0.0075, size = 5) +
   geom_smooth(color = "indianred1", se = FALSE, method = "lm") 
+```
+
+
+
+
+## Other Representations of the Data
+
+[explanation]
+
+```{r}
 
 #Relative salience of racism based experience with racism
 filtered_aapi |>
@@ -102,7 +122,10 @@ filtered_aapi |>
   labs(x = "Political Importance of Racism",
        y = "Count", title = "Relative Salience of Racism By Personal Experience with Discrimination", 
        subtitle = "Does experiencing racism affect how politically important Asian Americans consider it?")
+```
 
+
+```{r}
   ##Relative salience of racism based on origin region
 filtered_aapi |>
   mutate(
@@ -124,6 +147,8 @@ filtered_aapi |>
 
   
 ```
+
+
 
 ## Confidence Interval -- Is discrimination statistically significant?
 
@@ -148,7 +173,7 @@ avg_racism_care_discrim <- aapi |>
     ATE_discrim =`Yes Discrim` - `No Discrim`
     )
 
-avg_racism_care_discrim
+#avg_racism_care_discrim
 
 
 #Using Bootstrap to calculate 95% confidence interval for ATE of discrimination on racism's political salience
@@ -161,7 +186,7 @@ ate_boots_discrim <- filtered_aapi |>
   get_ci(level = 0.95, type = "percentile") 
   #visualize()
 
-ate_boots_discrim
+#ate_boots_discrim
 
 
 
