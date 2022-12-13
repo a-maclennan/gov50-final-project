@@ -60,6 +60,9 @@ origin_racism <- filtered_aapi |>
   summarize(avg_careaboutracism = mean(racism_issue), n = n()) 
 ```
 
+
+
+
 ```{r}
 
 #Distribution of racism_issue variable
@@ -122,6 +125,14 @@ filtered_aapi |>
   
 ```
 
+## Confidence Interval -- Is discrimination statistically significant?
+
+The average treatment effect (ATE) of discrimination on the political salience of racism is 0.30
+Our null hypothesis is that discrimination has no actual effect. We will use a test level of 0.05, so if a 95% confidence interval doesn't include 0, we will be able to reject the null hypothesis and conclude that discrimination *does* have a statistically significant effect on whether Asian Americans rank racism among th top three issues most important to them politically.
+
+Calculated with a bootstrap method,the 95% confidence interval for this ATE is 0.189 to 0.496
+This 95% confidence interval does *not* include 0, so we can reject the null hypothesis. This means that personally experiencing discrimination *does* have a statistically significant effect on the political salience of racism among Asian Americans (an increase). We can reject the null hypothesis of no difference in means with a test
+
 
 ```{r}
 library(infer)
@@ -140,7 +151,8 @@ avg_racism_care_discrim <- aapi |>
 avg_racism_care_discrim
 
 
-#Using Bootstrap to calculate 95% confidence interval for ATE of discrimination on 
+#Using Bootstrap to calculate 95% confidence interval for ATE of discrimination on racism's political salience
+#confidence interval is 0.189 to 0.496, 
 ate_boots_discrim <- filtered_aapi |>
   mutate(discrim = if_else(discrim == 0, "No Discrim", "Yes Discrim")) |>
   specify(racism_issue ~ discrim) |>
