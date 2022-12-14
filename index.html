@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["aapi-final-project-data.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-4-2.png","index_files/figure-html5/unnamed-chunk-4-3.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/header-attrs-2.14/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/kePrint-0.0.1/kePrint.js","index_files/lightable-0.0.1/lightable.css","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["aapi-final-project-data.csv","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-3-1.png","index_files/figure-html5/unnamed-chunk-4-1.png","index_files/figure-html5/unnamed-chunk-4-2.png","index_files/figure-html5/unnamed-chunk-4-3.png","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/figure-html5/unnamed-chunk-6-1.png","index_files/figure-html5/unnamed-chunk-7-1.png","index_files/figure-html5/unnamed-chunk-8-1.png","index_files/figure-html5/unnamed-chunk-9-1.png","index_files/header-attrs-2.14/header-attrs.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/kePrint-0.0.1/kePrint.js","index_files/lightable-0.0.1/lightable.css","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1519,21 +1519,38 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="initial-project-thoughts-to-be-replaced-with-introduction-and-research-question">Initial Project thoughts [to be replaced with introduction and research question]</h2>
-<p>I am interested in exploring data related to the 2022 midterm elections and Asian American voters, or other data related to Asian Americans and American politics. I could potentially study Asian American voting behavior over time related to some other factor such as specific ethnicity, what generation immigrant they are, etc. Or I could look at what issues they rate as being most important to them, or whether thay’re more likely to vote for Asian candidates regardless of party affiliation.</p>
+<h2 id="introduction-and-research-question">Introduction and Research Question</h2>
+<p>For my project, I was interested in exploring the political behavior of Asian Americans in Ohio. As the fastest growing voting demographic in the state (67% growth from 2010 to 2020), Asian American Ohioans will soon have the power to significantly affect statewide election results. Even as of 2022, Asian Americans make up just 1.9% of the Ohio electorate, yet in some cases live in concentrations that enable them to sway local elections. However, Asian Americans and their voting behavior are very understudied. In order to effectively conduct voter outreach to Asian Americans in Ohio, or for Ohio politicians to effectively serve and understand their Asian American constituents, it is vital to understand the factors that Asian Americans’ political beliefs.</p>
+<p>This project is an observational cross-sectional study using survey data provided by TARGET Ohio, a Cincinnati-based nonprofit that surveys Asian Americans and conducts Asian American voter outreach. Their most recent survey sought to determine (1) what percentage of the Ohio Asian American community had personally experienced discrimination, and (2) what political issues Ohio Asian Americans considered most important. I designed a project to see if there is a connection between these two things — that is, my project seeks to answer the research question: <strong>Does experiencing discrimination firsthand (or having a family member experience it firsthand) affect how politically important Asian Americans in Ohio believe the issue of racism to be?</strong></p>
+<p>My hypothesis was that personally experiencing discrimination will increase the rate at which Asian Americans in the study rank “Racism” as one of their top three most important political issues.</p>
+<h2 id="the-data">The Data</h2>
+<p>The data are originally a survey of 206 respondents, of which the data analysis was performed on 140 — since some survey questions were optional, the data were filtered for this project to include only the respondents who (1) provided one Asian country of origin/heritage, and (2) answered the question about personal experience with discrimination, and (3) ranked three political issues that were most important to them. This survey was conducted (and data provided) by TARGET Ohio, a Cincinnati-based nonprofit that surveys Asian Americans and conducts voter outreach.</p>
+<h3 id="the-variables">The Variables</h3>
+<ul>
+<li><strong>discrim</strong> is a binary variable where 1 indicates that a respondent marked that they or a family member had personally experienced ANY of the following that they attributed to their Asian American race/ethnicity: “Emotional bullying,” “Disrespect or being ignored,” or “Physical attack.” Otherwise, this variable is 0 (indicating a respondent said they had NOT experienced any of these forms of discrimination)</li>
+<li><strong>orig_region</strong> describes the self-reported origin region of the respondent; s = South Asia, e = East Asia, and se = Southeast Asia</li>
+<li><strong>racism_issue</strong> is a binary variable where 1 indicates that a respondent included “Racism and Discrimination” in their list of three issues they are “most worried about these days.” 0 indicates that the respondent listed other issues, but did not include “Racism and Discrimination.” For this question on the survey, respondents chose from a list of 15 common political issues (ex. healthcare, education, economy, inflation, democracy, etc.) and had the option to write in their own.</li>
+</ul>
+<p>In this project, <em>discrim</em> and <em>orig_region</em> are explanatory variables, and <em>racism_issue</em> is the outcome variable.</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<h2 id="distribution-of-dependent-variable">Distribution of Dependent Variable</h2>
-<p>[more description to come]</p>
+<p>The following is a plot of the distribution of the racism_issue variable. This shows that 62 out of 140 (44.29%) respondents ranked “Racism and Discrimination” among their top three most important political issues.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
-<h2 id="multiple-regression-table-and-plot">Multiple Regression Table and Plot</h2>
-<p>[interpretation]</p>
+<h2 id="results">Results</h2>
+<p>Below is a graphic representation of the discrim variable vs. the racism_issue variable. While these could be plotted on a scatterplot, because they are both binary variables, a bar plot is more effective at displaying the relationship.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" style="display: block; margin: auto;" /></p>
+</div>
+<p>From the plot, it is apparent that respondents who reported having personal experience with discrimination disproportionately reported being worried about racism and discrimination (ranking it in their top three political issues). Only 22.6% of those who had not personally experienced racism placed racism in their top three political issues. In comparison, 57.5% of those who had personally experienced racism placed racism in their top three political issues. <strong>This would imply that personally experiencing discrimination increases a person’s likelihood of ranking racism among their top three political issues by approximately 35%.</strong></p>
+<h3 id="controlling-for-potential-confounders-multiple-regression-analysis">Controlling for Potential Confounders – Multiple Regression Analysis</h3>
+<p>One possible confounder is the region of origin of the respondents. Perhaps Asian Americans from different ethnic backgrounds respond in different political manners to personally experiencing racism. This could be due to differences in skin tone, culture, community attitude, or other overwhelming political issues (i.e. perhaps Asian Americans from a certain region overwhelmingly care about three issues to the point that even after experiencing racism, the issue of racism never surpasses their other three important issues).</p>
+<p>Region of origin was controlled for through a multiple regression analysis using racism_issue as the outcome variable and both discrim and orig_region as the explanatory variables. A table of regression results can be seen below. A test level of 0.05 was used to evaluate results.</p>
 <div class="layout-chunk" data-layout="l-body">
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -1660,25 +1677,32 @@ R2 Adj.
 </tr>
 </tbody>
 </table>
-<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
-<h2 id="other-representations-of-the-data">Other Representations of the Data</h2>
-<p>[explanation]</p>
+<p>From the table, we can see that the intercept is 0.247, meaning that a person with East Asian origin who has not experienced discrimination is 24.7% likely to rank racism among their top three politically important issues.</p>
+<p>We can also see that the coefficient associated with discrim is 0.348. This means that, holding other conditions (orig_region) constant, an Asian American who has experienced racism is 34.8% more likely to rank racism among their top three politically important issues.</p>
+<p>Conversely, the coefficients for orig_regions (South Asian descent) and orig_regionse (Southeast Asian descent) are -0.047 and -0.007 respectively. This means that, holding other conditions (discrim) constant, a person of South Asian descent is 4.7% less likely, and a person of Southeast Asian descent is 0.7% less likely than an East Asian person to rank racism among their top three politically important issues.</p>
+<h3 id="p-values-are-these-variables-statistically-significant">P-Values — Are these variables statistically significant?</h3>
+<p>From the table, we can see that the p value associated with discrim is &lt;0.001, meaning that if discrimination had no effect on the political salience of racism for Asian Americans, the probability of observing data as or more extreme as this data would be less than 0.1%. This means that with a test level of 0.05, we can reject the null hypothesis (that discrimination has no effect on the political salience of racism for Asian Americans) and conclude that there is a causal relationship: <strong>experiencing discrimination does have a statistically significant effect on how much Asian Americans care about racism politically.</strong></p>
+<p>However, we cannot reject a null hypothesis for either of the coefficients associated with origin regions. Both p-values (0.588 and 0.951 for South Asian descent and Southeast Asian descent, respectively) are larger than 0.05, meaning there is a larger than 5% chance of observing the same data or more extreme data even if origin region has no effect on how politically salient Asian Americans find racism. Therefore, <strong>we are unable to show that origin region has a statistically significant effect</strong> (we are unable to reject the null hypothesis that origin region has no effect).</p>
+<h3 id="bootstrap-test-is-it-okay-to-rely-on-this-sample">Bootstrap Test – Is it okay to rely on this sample?</h3>
+<p>Since the filtered survey sample is relatively small (only 140 respondents), we utilize a bootstrap test to determine if it is alright to rely on this sample for results that would reflect a broader population. The bootstrap test randomly samples from the original survey sample with replacement in order to mimic the sampling process and help us determine whether a sample can represent a broader population.</p>
+<p>Our null hypothesis is that discrimination has no effect on racism’s political salience in the Asian American community. We continue to use a test level of 0.05, so we use the bootstrap method to generate a 95% confidence interval. The meaning of this interval is that 95% of the time, the actual population parameter (the true extent to which experiencing discrimination affects racism’s political salience for Asian Americans) will be within the interval.</p>
+<p>Calculated with a bootstrap method,the 95% confidence interval for the association between experiencing discrimination and racism’s political salience among Asian Americans is 0.201 to 0.496. This confidence interval is similar to a the confidence interval that could be calculated from the multiple regression model, which implies that <strong>this sample is indeed appropriate to represent a broader population.</strong></p>
+<p>This 95% confidence interval also does <em>not</em> include 0, so we can again reject the null hypothesis that discrim has no effect on racism_issue. The fact that the confidence interval does not inlcude 0 mean that at least 95% of the time, the population parameter cannot possibly be 0 (discrim must have at least <em>some</em> effect on racism_issue). Therefore, we can again conclude that personally experiencing discrimination <em>does</em> have a statistically significant effect on the political salience of racism among Asian Americans.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" style="display: block; margin: auto;" /></p>
+<pre><code># A tibble: 1 × 2
+  lower_ci upper_ci
+     &lt;dbl&gt;    &lt;dbl&gt;
+1    0.201    0.496</code></pre>
+<p><img src="index_files/figure-html5/unnamed-chunk-9-1.png" width="624" style="display: block; margin: auto;" /></p>
 </div>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="index_files/figure-html5/unnamed-chunk-6-1.png" width="624" style="display: block; margin: auto;" /></p>
-</div>
-<h2 id="confidence-interval-is-discrimination-statistically-significant">Confidence Interval – Is discrimination statistically significant?</h2>
-<p>The average treatment effect (ATE) of discrimination on the political salience of racism is 0.30
-Our null hypothesis is that discrimination has no actual effect. We will use a test level of 0.05, so if a 95% confidence interval doesn’t include 0, we will be able to reject the null hypothesis and conclude that discrimination <em>does</em> have a statistically significant effect on whether Asian Americans rank racism among th top three issues most important to them politically.</p>
-<p>Calculated with a bootstrap method,the 95% confidence interval for this ATE is 0.189 to 0.496
-This 95% confidence interval does <em>not</em> include 0, so we can reject the null hypothesis. This means that personally experiencing discrimination <em>does</em> have a statistically significant effect on the political salience of racism among Asian Americans (an increase). We can reject the null hypothesis of no difference in means with a test</p>
-<div class="layout-chunk" data-layout="l-body">
-
-</div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="conclusion">Conclusion</h2>
+<h3 id="summary">Summary</h3>
+<p>This study evaluated survey data of 140 Asian Americans provided by the nonprofit TARGET Ohio, which focuses on Asian American issues via data collection and voter outreach. This study found that there is a statistically significant positive relationship between <em>discrim</em> (whether a respondent indicated they or a family member had personally experienced racism) and <em>racism_issue</em> (whether that respondent ranked racism among their top three politically important issues). Specifically, this study’s results estimate that, holding other factors constant, having personal experience with racism increases an Asian American’s likelihood of ranking racism in their top three political issues by 34.8%.</p>
+<h3 id="limitations-and-possible-improvements">Limitations and Possible Improvements</h3>
+<p>Many limitations of this project were found in the relative lack of demographic data in the dataset that would potentially have allowed for the controlling of additional variables. For example, the dataset did not include age, location, skin color, education level, occupation, family size, or many other potentially relevant demographic details. It would have been interesting to examine a potential link to colorism, for instance, if the survey had collected data on respondents’ skin color. Darker-skinned Asian Americans live a different experience than lighter-skinned Asian Americans, and with skin color data, a study could examine whether those different experiences contribute to different political effects from experiencing racism.</p>
+<p>Another limitation of this project was that there was the number of respondents who ommitted responses to some or all of the questions of relevance on the survey, as well as respondents who listed more than one origin region (there was no easy way to include them, so they were filtered out of the dataset). Ideally, a study would be able to analyze responses from all respondents, so in a study with a larger sample, perhaps it would be possible to create a separate category for respondents from multiple origin regions.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
