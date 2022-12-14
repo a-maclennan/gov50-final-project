@@ -80,6 +80,8 @@ origin_racism <- filtered_aapi |>
 
 The following is a plot of the distribution of the racism_issue variable. This shows that 62 out of 140 (44.29%) respondents ranked "Racism and Discrimination" among their top three most important political issues.
 
+
+
 ```{r}
 
 #Distribution of racism_issue variable
@@ -206,13 +208,9 @@ filtered_aapi |>
 
 ### Bootstrap Test -- Is it okay to rely on this sample?
 
-Since the filtered survey sample is relatively small (only 140 respondents), we utilize a bootstrap test to determine if it is alright to rely on this sample for results that would reflect a broader population. The bootstrap test randomly samples from the original survey sample with replacement in order to mimic the sampling process and help us determine whether a sample can represent a broader population. 
+Since the filtered survey sample is relatively small (only 140 respondents), this study utilized a bootstrap test to determine if it is alright to rely on this sample for results that would reflect a broader population. The bootstrap test randomly samples from the original survey sample with replacement in order to mimic the sampling process. This is used to help determine whether a sample can represent a broader population. 
 
 Our null hypothesis is that discrimination has no effect on racism's political salience in the Asian American community. We continue to use a test level of 0.05, so we use the bootstrap method to generate a 95% confidence interval. The meaning of this interval is that 95% of the time, the actual population parameter (the true extent to which experiencing discrimination affects racism's political salience for Asian Americans) will be within the interval. 
-
-Calculated with a bootstrap method,the 95% confidence interval for the association between experiencing discrimination and racism's political salience among Asian Americans is 0.201 to 0.496. This confidence interval is similar to a the confidence interval that could be calculated from the multiple regression model, which implies that **this sample is indeed appropriate to represent a broader population.** 
-
-This 95% confidence interval also does *not* include 0, so we can again reject the null hypothesis that discrim has no effect on racism_issue. The fact that the confidence interval does not inlcude 0 mean that at least 95% of the time, the population parameter cannot possibly be 0 (discrim must have at least *some* effect on racism_issue). Therefore, we can again conclude that personally experiencing discrimination *does* have a statistically significant effect on the political salience of racism among Asian Americans.
 
 ```{r}
 library(infer)
@@ -243,7 +241,7 @@ ate_boots_discrim <- filtered_aapi |>
 perc_ci_95 <- ate_boots_discrim |>
   get_ci(level = 0.95, type = "percentile") 
 
-perc_ci_95
+#perc_ci_95
 
 
 visualize(ate_boots_discrim) +
@@ -253,17 +251,21 @@ visualize(ate_boots_discrim) +
 
 ```
 
+As seen in the visual representation above, when calculated with a bootstrap method,the 95% confidence interval for the association between experiencing discrimination and racism's political salience among Asian Americans is 0.201 to 0.496. This confidence interval is similar to a confidence interval that could be calculated from the multiple regression model, which implies that **this sample is indeed appropriate to represent a broader population.** 
+
+This 95% confidence interval also does *not* include 0, so we can again reject the null hypothesis that discrim has no effect on racism_issue. The fact that the confidence interval does not include 0 means that at least 95% of the time, the population parameter cannot possibly be 0 (i.e. 95% of the time, we predict that discrim has at least *some* effect on racism_issue). Therefore, we can again conclude that personally experiencing discrimination *does* have a statistically significant effect on the political salience of racism among Asian Americans.
+
 ## Conclusion
 
 ### Summary
 
-This study evaluated survey data of 140 Asian Americans provided by the nonprofit TARGET Ohio, which focuses on Asian American issues via data collection and voter outreach. This study found that there is a statistically significant positive relationship between *discrim* (whether a respondent indicated they or a family member had personally experienced racism) and *racism_issue* (whether that respondent ranked racism among their top three politically important issues). Specifically, this study's results estimate that, holding other factors constant, having personal experience with racism increases an Asian American's likelihood of ranking racism in their top three political issues by 34.8%. 
+This study evaluated survey data of 140 Asian Americans in Ohio and found that there is a statistically significant positive relationship between *discrim* (whether a respondent did or didn't indicate that they or a family member had personally experienced racism) and *racism_issue* (whether that respondent ranked racism among their top three politically important issues). Specifically, this study's results estimate that, in Ohio, holding other factors constant, having personal experience with racism increases an Asian American's likelihood of ranking racism in their top three political issues by 34.8%. 
 
 ### Limitations and Possible Improvements
 
-Many limitations of this project were found in the relative lack of demographic data in the dataset that would potentially have allowed for the controlling of additional variables. For example, the dataset did not include age, location, skin color, education level, occupation, family size, or many other potentially relevant demographic details. It would have been interesting to examine a potential link to colorism, for instance, if the survey had collected data on respondents' skin color. Darker-skinned Asian Americans live a different experience than lighter-skinned Asian Americans, and with skin color data, a study could examine whether those different experiences contribute to different political effects from experiencing racism. 
+Many limitations of this project were found in the relative lack of demographic data in the dataset that would potentially have allowed for the controlling of additional variables. For example, the dataset did not include age, location, skin color, education level, occupation, family size, or many other potentially relevant demographic details. For instance, It would have been interesting to examine a potential link to colorism if the survey had collected data on respondents' skin color. Darker-skinned Asian Americans live a different experience than lighter-skinned Asian Americans; and, with skin color data, a study could examine whether those different experiences contribute to different political effects from experiencing racism. 
 
-Another limitation of this project was that there was the number of respondents who ommitted responses to some or all of the questions of relevance on the survey, as well as respondents who listed more than one origin region (there was no easy way to include them, so they were filtered out of the dataset). Ideally, a study would be able to analyze responses from all respondents, so in a study with a larger sample, perhaps it would be possible to create a separate category for respondents from multiple origin regions.
+Another limitation of this project was that there were several respondents who omitted responses to some or all of the questions of relevance on the survey, as well as respondents who listed more than one origin region (there was no easy way to include them, so they were filtered out of the dataset). Ideally, a study would be able to analyze responses from those respondents as well, so in a study with a larger sample, perhaps it would be possible to create a separate orig_region category for respondents from multiple origin regions.
 
 
 
