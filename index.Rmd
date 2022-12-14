@@ -9,15 +9,15 @@ output:
 
 ## Introduction and Research Question
 
-For my project, I was interested in exploring the political behavior of Asian Americans in Ohio. As the fastest growing voting demographic in the state (67% growth from 2010 to 2020), Asian American Ohioans will soon have the power to significantly affect statewide election results. Even as of 2022, Asian Americans make up just 1.9% of the Ohio electorate, yet in some cases live in concentrations that enable them to sway local elections. However, Asian Americans and their voting behavior are very understudied. In order to effectively conduct voter outreach to Asian Americans in Ohio, or for Ohio politicians to effectively serve and understand their Asian American constituents, it is vital to understand the factors that Asian Americans' political beliefs.
+For my project, I was interested in exploring the political behavior of Asian Americans in Ohio. As the fastest growing voting demographic in the state (67% growth from 2010 to 2020), Asian American Ohioans will soon have the power to significantly affect statewide election results. Even as of 2022, Asian Americans make up just 1.9% of the Ohio electorate, yet in some cases live in concentrations that enable them to sway local elections. However, Asian Americans in Ohio are largely overlooked, and thus their voting behavior is very understudied. In order to effectively conduct voter outreach to Asian Americans in Ohio, or for Ohio politicians to effectively serve and understand their Asian American constituents, it is vital to understand the factors that shape Asian Americans' political beliefs.
 
-This project is an observational cross-sectional study using survey data provided by TARGET Ohio, a Cincinnati-based nonprofit that surveys Asian Americans and conducts Asian American voter outreach. Their most recent survey sought to determine (1) what percentage of the Ohio Asian American community had personally experienced discrimination, and (2) what political issues Ohio Asian Americans considered most important. I  designed a project to see if there is a connection between these two things --- that is, my project seeks to answer the research question: **Does experiencing discrimination firsthand (or having a family member experience it firsthand) affect how politically important Asian Americans in Ohio believe the issue of racism to be?**
+This project is an observational cross-sectional study using survey data provided by The AAPI Research and Engagement Team (TARGET) Ohio, a Cincinnati-based nonprofit that surveys Asian Americans and conducts Asian American voter outreach, with the goal of building power among the Asian American electorate. Their most recent preliminary survey sought to determine, among other things, (1) what percentage of the Ohio Asian American community had personally experienced discrimination, and (2) what political issues Ohio Asian Americans considered most important. My project seeks to learn if there is a connection between these two things --- that is, my project aims to answer the research question: **Does experiencing discrimination firsthand (or having a family member experience it firsthand) affect how politically important Asian Americans in Ohio believe the issue of racism to be?**
 
-My hypothesis was that personally experiencing discrimination will increase the rate at which Asian Americans in the study rank "Racism" as one of their top three most important political issues.
+My hypothesis was that personally experiencing discrimination increases the rate at which Asian Americans in the study rank "Racism" as one of their top three most important political issues.
 
 ## The Data
 
-The data are originally a survey of 206 respondents, of which the data analysis was performed on 140 --- since some survey questions were optional, the data were filtered for this project to include only the respondents who (1) provided one Asian country of origin/heritage, and (2) answered the question about personal experience with discrimination, and (3) ranked three political issues that were most important to them. This survey was conducted (and data provided) by TARGET Ohio, a Cincinnati-based nonprofit that surveys Asian Americans and conducts voter outreach.
+The data are originally a survey of 206 respondents, of which the data analysis was performed on 140 --- since some survey questions were optional, the data were filtered for this project to include only the respondents who (1) provided one Asian country of origin/heritage, (2) answered the question about personal experience with discrimination, and (3) ranked three political issues that were most important to them. This survey was conducted (and data provided) by TARGET Ohio.
 
 ### The Variables
 
@@ -162,11 +162,11 @@ statistic = c("s.e. = {std.error}",
 gof_map = c("nobs", "r.squared", "adj.r.squared"))
 ```
 
-From the table, we can see that the intercept is 0.247, meaning that a person with East Asian origin who has not experienced discrimination is 24.7% likely to rank racism among their top three politically important issues. 
+From the table, we can see that the intercept is 0.247, meaning that the model predicts that a person with East Asian origin who has not experienced discrimination is 24.7% likely to rank racism among their top three politically important issues. 
 
-We can also see that the coefficient associated with discrim is 0.348. This means that, holding other conditions (orig_region) constant, an Asian American who has experienced racism is 34.8% more likely to rank racism among their top three politically important issues.
+We can also see that the coefficient associated with discrim is 0.348. This means that, holding other conditions (orig_region) constant, the model predicts that an Asian American who has personally experienced racism is 34.8% more likely than if they hadn't experienced racism to rank racism among their top three politically important issues.
 
-Conversely, the coefficients for orig_regions (South Asian descent) and orig_regionse (Southeast Asian descent) are -0.047 and -0.007 respectively. This means that, holding other conditions (discrim) constant, a person of South Asian descent is 4.7% less likely, and a person of Southeast Asian descent is 0.7% less likely than an East Asian person to rank racism among their top three politically important issues.
+Conversely, the coefficients for orig_regions (South Asian descent) and orig_regionse (Southeast Asian descent) are -0.047 and -0.007 respectively. This means that, holding other conditions (discrim) constant, the model predicts that a person of South Asian descent is 4.7% less likely, --- and a person of Southeast Asian descent is 0.7% less likely --- than an East Asian person to rank racism among their top three politically important issues.
 
 ### P-Values --- Are these variables statistically significant?
 
@@ -253,7 +253,7 @@ visualize(ate_boots_discrim) +
 
 As seen in the visual representation above, when calculated with a bootstrap method,the 95% confidence interval for the association between experiencing discrimination and racism's political salience among Asian Americans is 0.201 to 0.496. This confidence interval is similar to a confidence interval that could be calculated from the multiple regression model, which implies that **this sample is indeed appropriate to represent a broader population.** 
 
-This 95% confidence interval also does *not* include 0, so we can again reject the null hypothesis that discrim has no effect on racism_issue. The fact that the confidence interval does not include 0 means that at least 95% of the time, the population parameter cannot possibly be 0 (i.e. 95% of the time, we predict that discrim has at least *some* effect on racism_issue). Therefore, we can again conclude that personally experiencing discrimination *does* have a statistically significant effect on the political salience of racism among Asian Americans.
+This 95% confidence interval also does *not* include 0, so we can again reject the null hypothesis that discrim has no effect on racism_issue. The fact that the confidence interval does not include 0 means that at least 95% of the time, the population parameter cannot be 0 (i.e. 95% of the time, we predict that discrim has at least *some* effect on racism_issue). Therefore, we can again conclude that personally experiencing discrimination *does* have a statistically significant effect on the political salience of racism among Asian Americans.
 
 ## Conclusion
 
@@ -263,12 +263,9 @@ This study evaluated survey data of 140 Asian Americans in Ohio and found that t
 
 ### Limitations and Possible Improvements
 
-Many limitations of this project were found in the relative lack of demographic data in the dataset that would potentially have allowed for the controlling of additional variables. For example, the dataset did not include age, location, skin color, education level, occupation, family size, or many other potentially relevant demographic details. For instance, It would have been interesting to examine a potential link to colorism if the survey had collected data on respondents' skin color. Darker-skinned Asian Americans live a different experience than lighter-skinned Asian Americans; and, with skin color data, a study could examine whether those different experiences contribute to different political effects from experiencing racism. 
+Many limitations of this project were found in the relative lack of demographic data in the dataset that would potentially have allowed for the controlling of additional variables. For example, the dataset did not include age, location, skin color, education level, occupation, family size, or many other potentially relevant demographic details. For instance, It would have been interesting to examine a potential link to colorism if the survey had collected data on respondents' skin color. Darker-skinned Asian Americans live a different experience than lighter-skinned Asian Americans; and, with skin color data, a study could examine whether those different experiences contribute to different political effects from experiencing racism.
 
 Another limitation of this project was that there were several respondents who omitted responses to some or all of the questions of relevance on the survey, as well as respondents who listed more than one origin region (there was no easy way to include them, so they were filtered out of the dataset). Ideally, a study would be able to analyze responses from those respondents as well, so in a study with a larger sample, perhaps it would be possible to create a separate orig_region category for respondents from multiple origin regions.
-
-
-
 
 
 
